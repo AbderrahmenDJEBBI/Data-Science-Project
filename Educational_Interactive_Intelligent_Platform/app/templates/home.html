@@ -1,0 +1,237 @@
+
+{% extends "layout.html" %}
+{% block content %}
+
+        <!-- Start Main Banner Area -->
+        <!--
+        <div class="main-banner"> 
+            <div class="main-banner-item">
+                <div class="d-table">
+                    <div class="d-table-cell">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <div class="main-banner-content">
+                                        <span>Play, Learn and Grow</span>
+                                        {% with messages = get_flashed_messages(with_categories=true) %}
+                                        {% if messages %}
+                                        {% for category, message in messages %}
+                                        <div class="alert alert-{{ category }}">
+                                        {{ message }}
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                        {% endwith %}
+                                        <h1>Empowering Student Knowledge</h1>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+
+                                        <div class="banner-btn">
+                                            <a href="#" class="default-btn">
+                                                Learn More
+                                            </a>
+                                            <a href="#" class="optional-btn">
+                                                Find Out More
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="main-banner-image">
+                                        <img data-cfsrc="{{url_for('static',filename='assets/img/main-banner/education-girl.png')}}" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static',filename='assets/img/main-banner/education-girl.png')}}" alt="image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-banner-shape">
+                <div class="banner-bg-shape">
+                    <img data-cfsrc="{{url_for('static',filename='assets/img/main-banner/banner-bg-shape-1.png')}}" class="white-image" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static',filename='assets/img/main-banner/banner-bg-shape-1.png')}}" class="white-image" alt="image">
+                    <img data-cfsrc="{{url_for('static',filename='assets/img/main-banner/banner-bg-shape-1-dark.png')}}" class="black-image" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static',filename='assets/img/main-banner/banner-bg-shape-1-dark.png')}}" class="black-image" alt="image">
+                </div>
+
+                <div class="shape-1">
+                    <img data-cfsrc="{{url_for('static',filename='assets/img/main-banner/banner-shape-1.png')}}" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static',filename='assets/img/main-banner/banner-shape-1.png')}}" alt="image">
+                </div>
+
+                <div class="shape-2">
+                    <img data-cfsrc="{{url_for('static',filename='assets/img/main-banner/banner-shape-2.png')}}" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static',filename='assets/img/main-banner/banner-shape-2.png')}}" alt="image">
+                </div>
+
+                <div class="shape-3">
+                    <img data-cfsrc="{{url_for('static',filename='assets/img/main-banner/banner-shape-3.png')}}" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static',filename='assets/img/main-banner/banner-shape-3.png')}}" alt="image">
+                </div>
+
+                <div class="shape-4">
+                    <img data-cfsrc="assets/img/main-banner/banner-shape-4.png" alt="image" style="display:none;visibility:hidden;"><img src="assets/img/main-banner/banner-shape-4.png" alt="image">
+                </div>
+            </div>
+        </div>
+    -->
+
+
+    <div class="main-banner-with-video"> 
+        <div class="home-slides owl-carousel owl-theme">
+            <div class="video-banner-item">
+                <div class="container-fluid">
+                    <video loop="" muted="" autoplay="" poster="#" class="background-video">
+                        <source src="{{url_for('static',filename='assets/img/video/video1.mp4')}}" type="video/mp4">
+                    </video>
+                    <div class="main-banner-content">
+                        <span>Learn and Grow</span>
+                        <h1>Welcome to C-MATH</h1>
+                        <p>Join our educational website for interactive and engaging activities designed to make learning fun for kids.</p>
+
+                        <div class="banner-btn">
+                            <a href="#" class="default-btn">
+                                Learn More
+                            </a>
+                            <a href="#" class="optional-btn">
+                                Find Out More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-banner-item">
+                <div class="container-fluid">
+                    <video loop="" muted="" autoplay="" poster="#" class="background-video">
+                        <source src="{{url_for('static',filename='assets/img/video/video2.mp4')}}" type="video/mp4">
+                    </video>
+
+                    <div class="main-banner-content">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                                        {% if messages %}
+                                        {% for category, message in messages %}
+                                        <div class="alert alert-{{ category }}">
+                                        {{ message }}
+                                        </div>
+                                        {% endfor %}
+                                        {% endif %}
+                                        {% endwith %}
+                                        <span>Learn and Grow</span>
+                                        <h1>Welcome to C-MATH</h1>
+                                        <p>Join our educational website for interactive and engaging activities designed to make learning fun for kids.</p>
+
+                        <div class="banner-btn">
+                            <a href="#" class="default-btn">
+                                Learn More
+                            </a>
+                            <a href="#" class="optional-btn">
+                                Find Out More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- End Main Banner Area -->
+
+        <!-- Start Who We Are Area -->
+        <section class="who-we-are ptb-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="who-we-are-image">
+                            <img data-cfsrc="{{url_for('static',filename='assets/img/who-we-are/who-we-are.jpg')}}" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static',filename='assets/img/who-we-are/who-we-are.jpg')}}" alt="image">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="who-we-are-content">
+                            <span>Learn and Grow</span>
+                        <h1>Welcome to C-MATH</h1>
+                        <p>Join our educational website for interactive and engaging activities designed to make learning fun for kids.</p>
+
+                            <ul class="who-we-are-list">
+                                <li>
+                                    <span>1</span>
+                                    Homelike Environment
+                                </li>
+                                <li>
+                                    <span>2</span>
+                                    Quality Educators
+                                </li>
+                                <li>
+                                    <span>3</span>
+                                    Safety and Security
+                                </li>
+                                <li>
+                                    <span>4</span>
+                                    Play to Learn
+                                </li>
+                            </ul>
+                            <div class="who-we-are-btn">
+                                <a href="#" class="default-btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="who-we-are-shape">
+                
+                <img data-cfsrc="{{url_for('static', filename='assets/img/who-we-are/who-we-are-shape.png')}}" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static', filename='assets/img/who-we-are/who-we-are-shape.png')}}" alt="image">
+
+            </div>
+        </section>
+        <!-- End Who We Are Area -->
+
+        <!-- Start Class Area -->
+        
+        <!-- End Class Area -->
+
+        <!-- Start Value Area -->
+       
+        <!-- End Value Area -->
+
+        <!-- Start Teacher Area -->
+        
+        <!-- End Teacher Area -->
+
+        <!-- Start Testimonials Area -->
+        <section class="testimonials-area pt-100 pb-100">
+            <div class="container">
+                <div class="section-title">
+                    <span>Testimonials</span>
+                    <h2>What Users Say About Us</h2>
+                </div>
+
+                <div class="testimonials-slides owl-carousel owl-theme">
+                    {% for review in reviews %}
+                    <div class="testimonials-item">
+                        <div class="testimonials-item-box">
+                            <div class="icon">
+                                <i class='bx bxs-quote-left'></i>
+                            </div> 
+                         <p>{{review.review_text}}</p>
+                            <div class="info-box">
+                                <h3>{{review.user.firstname}} {{review.user.lastname}}</h3>
+                                <span>{{review.profession}}</span>
+                    
+                            </div>
+                        </div>
+                        <div class="testimonials-image">
+                            <img data-cfsrc="{{url_for('static',filename='assets/img/testimonials/testimonials-1.png')}}" alt="image" style="display:none;visibility:hidden;"><img src="{{url_for('static',filename='assets/img/testimonials/testimonials-1.png')}}" alt="image">
+                        </div>
+                    </div>
+{% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- End Testimonials Area -->
+        
+        <!-- Start Event Area -->
+       
+        <!-- End Event Area -->
+
+        <!-- Start Blog Area -->
+       
+        <!-- End Blog Area -->
+
+      
+        {% endblock content %}

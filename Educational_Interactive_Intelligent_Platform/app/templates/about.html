@@ -1,0 +1,257 @@
+{% extends "layout.html" %}
+{% block content %}
+
+        <!-- Start Page Banner -->
+        <div class="page-banner-area item-bg3">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="page-banner-content">
+                            <h2>Generate Images from word problems</h2>
+                            <ul>
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>Word problems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Banner -->
+    <div class="container">
+      <h1 class="mt-5 mb-3">Write your Problem :</h1>
+      <!---
+      <form method="POST" class="mb-5">
+        <div class="form-group">
+          <label for="input-text">Input Text:</label>
+          <input type="text" class="form-control" id="text" name="text">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Generate Image</button>
+      </form>
+      {% if img_url %}
+      <div class="text-center">
+        <img src="{{ img_url }}" class="img-fluid" alt="Generated Image">
+      </div>
+      {% endif %}
+    </div>
+
+-->
+<form method="POST" enctype="multipart/form-data" class="mb-5">
+ 
+    <div class="form-group">
+      <h4> Recommended Problems : </h4>
+      {% for problem in recommended_problems %}
+      <div class="card">
+        <div class="card-body" style="background-color: #ADD8E6;">
+          <div style="display: flex; align-items: center;">
+            <h6 class="card-title">{{ problem }}</h6> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <button type="button" class="btn btn-sm btn-outline-secondary copy-btn" data-clipboard-text="{{ problem }}">Copy</button>
+          </div>
+        </div>
+      </div>
+      <br>
+    {% endfor %}
+    
+   <br> 
+       <h4> <label for="problem_image">Upload Image:</label></h4>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="problem_image" name="problem_image">
+            <label class="custom-file-label" for="problem_image">Choose file</label>
+        </div>
+        </div>
+    <div class="form-group">
+        <h4><label for="text">Problem:</label></h4>
+        <!-- <button type="button" id="en-button" onclick="startRecognition('en-US')">English Question ?</button>
+        -->
+     
+        <!--<input type="text" class="form-control" id="text" name="text"  value="{{ problem_text }}"> -->
+        <div style="display: flex; align-items: center;">
+        <input type="text" class="form-control" id="text" name="text"  placeholder = "Enter your Problem "value="{{ problem_text or p }}">
+         &nbsp; &nbsp; <button type="button" id="en-button" onclick="startRecognition('en-US')">
+          <i class="fas fa-microphone"></i>
+        </button>
+     
+        <div id="result"></div>
+      
+</div>
+    </div>
+    <br>
+    <div style="display: flex; align-items: center;">
+        <button type="submit" class="btn btn-primary" onclick="startTimer()">Generate Or Upload Image</button>
+        <div style="margin-left: 10px;" id="timer"></div>
+      
+    </div>
+      
+      
+</form>
+
+{% if img_url %}
+<div class="text-center">
+  
+  <img src="{{ url_for('static', filename='uploads/' + img_url) }}" class="img-fluid" alt="Generated Image">
+</div>
+<form action="/answer" method="POST">
+  <input type="hidden" name="img_url1" value="{{ img_url }}">
+<h1 class="mt-5 mb-3">Give an answer :</h1>
+{% if is_correct == "False" %}
+
+    <input type="text" style="background-color: #ffdddd;"class="form-control is-invalid" id="answer" name="answer" value="{{ answer_text }}" >
+   <br>
+   
+    <h4 class="alert alert-success">The correct answer is: {{ correct_answer }}</h4>
+    <div class="mt-4">
+      <a href="/about" class="btn btn-primary">Try Again</a>
+    </div>
+     
+    {% elif is_correct == "True" %}
+
+    <input type="text" id="answer" name="answer" value="{{ answer_text }}" >
+   <br>
+   
+    <h4 class="alert alert-success">Good Job !</h4>
+    <div class="mt-4">
+      <a href="/about" class="btn btn-primary">Go for another one ?</a>
+    </div>
+    {% else %}
+    <input type="text" class="form-control" id="answer" name="answer" value="{{ answer_text }}" >
+    <input type="hidden" name="problem_text" value="{{problem_text}}">
+<button type="submit" class="btn btn-primary">Answer</button>
+<!-- hint button-->
+<button style="display: none;" type="button" class="btn btn-secondary" onclick="toggleHint()">Hint</button>
+
+<div id="hint-content" style="display:none">
+  <p>This is a hint for the answer : {{hint}}</p>
+</div>
+
+</form>
+{% endif %}
+ 
+
+
+<form action="/feedback" method="POST">
+  <div class="form-group">
+    <h3>Please leave your feedback:</h3>
+    <textarea class="form-control" id="feedback" name="feedback" rows="4"></textarea>
+  </div>
+  <input type="hidden" name="problem_text" value="{{problem_text }}">
+  <input type="hidden" name="p" value="{{p}}">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+{% endif %}
+
+
+</div>
+
+   
+    
+
+
+{% block css %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+.input-group-addon {
+  background-color: #fff;
+  border: none;
+  padding: 0;
+}
+
+.input-group-addon i {
+  display: block;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.input-group-addon:hover i {
+  color: #007bff;
+}
+</style>
+{% endblock %}
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+<script>
+
+  var copyBtns = document.querySelectorAll('.copy-btn');
+  var clipboard = new ClipboardJS(copyBtns);
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+  });
+</script>
+
+
+       <script>
+        
+		function startTimer() {
+			document.getElementById("timer").style.display = "block";
+
+			var timeleft = 40;
+			var downloadTimer = setInterval(function(){
+			  document.getElementById("timer").innerHTML = "The image will be generated after: " + timeleft + " ( think of a solution in the meanwhile)";
+			  timeleft -= 1;
+			  if(timeleft <= 0){
+			    clearInterval(downloadTimer);
+			    document.getElementById("timer").innerHTML = "Time is up! The image will be displayed soon !";
+			    document.getElementById("timer").style.color = "red";
+			  }
+			}, 1000);
+		}
+    function toggleHint() {
+  var hintContent = document.getElementById("hint-content");
+  if (hintContent.style.display === "none") {
+    hintContent.style.display = "block";
+  } else {
+    hintContent.style.display = "none";
+  }
+}
+
+
+</script>
+
+<script>
+  const result = document.getElementById("text");
+  
+  window.SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.interimResults = true;
+  
+  recognition.addEventListener("result", (e) => {
+    const transcript = Array.from(e.results)
+      .map((result) => result[0])
+      .map((result) => result.transcript)
+      .join("");
+  
+    result.value = transcript;
+  });
+  
+  recognition.addEventListener("end", () => {
+    recognition.stop();
+  });
+  
+  function startRecognition(lang) {
+    recognition.lang = lang;
+    recognition.start();
+  }
+ 
+  var button1 = document.getElementById("en-button");
+  button1.addEventListener("click", function(event) {
+    event.preventDefault();
+  });
+      </script>
+   {% endblock %}    <!-- Latest compiled and minified CSS -->
+
+
+   {% endblock %}
+
+
+
+    
